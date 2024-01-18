@@ -1,0 +1,22 @@
+{
+  "name": "qax",
+  "version": "1.0.0",
+  "description": "Projeto de testes de ponta a pona no Mark L",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edsonj82/cypress-express-mark.git"
+  },
+  "author": "Edson José dos Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edsonj82/cypress-express-mark/issues"
+  },
+  "homepage": "https://github.com/edsonj82/cypress-express-mark#readme",
+  "devDependencies": {
+    "cypress": "^13.6.3"
+  }
+}
