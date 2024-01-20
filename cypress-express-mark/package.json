@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/edsonj82/cypress-express-mark#readme",
   "devDependencies": {
-    "@faker-js/faker": "^8.3.1",
     "cypress": "^13.6.3"
   }
 }
