@@ -18,7 +18,14 @@ describe('tasks', ()=>{
         cy.get('input[placeholder="Add a new Task"]')
             .type('Ler um livro de nodejs')
 
-            //button[contains(text(),'Create')]
-            cy.contains('button', 'Create').click()
+        //button[contains(text(),'Create')]
+        cy.contains('button', 'Create').click()
+
+        cy.get('main div p')
+            .should('be.visible')
+            .should('have.text', 'Ler um livro de nodejs')
+
+        cy.contains('main div p', 'Ler um livro de nodejs')
+            .should('be.visible')
     })
 })
