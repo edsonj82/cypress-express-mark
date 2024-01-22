@@ -24,10 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('createTask', (taskName) => {
+Cypress.Commands.add('createTask', (taskName = '') => {
     cy.visit('http://localhost:8080')
-
-    cy.get('input[placeholder="Add a new Task"]').type(taskName)
+    if(taskName !== '')
+        cy.get('input[placeholder="Add a new Task"]').type(taskName)
 
     cy.contains('button', 'Create').click()    //button[contains(text(),'Create')]
 })

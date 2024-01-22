@@ -26,4 +26,8 @@ describe('tasks', () => {
             .should('be.visible')
             .should('have.text', 'Task already exists!')
     })
+
+    it('required field', ()=>{
+        cy.createTask()
+    })
 })
