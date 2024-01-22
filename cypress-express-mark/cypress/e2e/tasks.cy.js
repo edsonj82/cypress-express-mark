@@ -2,12 +2,12 @@
 
 describe('tasks', ()=>{
     it('should register a new task', ()=>{
+        const taskName = 'Ler um livro de nodejs'
+
         cy.request({
             url:'http://localhost:3333/helper/tasks',
             method:'DELETE',
-            body:{
-                name:'Ler um livro de nodejs'
-            }
+            body:{ name: taskName }
         }).then(response =>{
             expect(response.status).to.eq(204)
         })
@@ -16,25 +16,26 @@ describe('tasks', ()=>{
         cy.visit('http://localhost:8080')
 
         cy.get('input[placeholder="Add a new Task"]')
-            .type('Ler um livro de nodejs')
+            .type(taskName)
 
         //button[contains(text(),'Create')]
         cy.contains('button', 'Create').click()
 
-        cy.get('main div p')
-            .should('be.visible')
-            .should('have.text', 'Ler um livro de nodejs')
-
-        cy.contains('main div p', 'Ler um livro de nodejs')
+        cy.contains('main div p', taskName)
             .should('be.visible')
     })
 
     it('should not allow duplated task',()=>{
+        const task ={
+            name: 'Estudar javascript',
+            is_done: false
+        }    
+
         cy.request({
             url:'http://localhost:3333/helper/tasks',
             method:'DELETE',
             body:{
-                name:'Estudar javascript'
+                name: task.name
             }
         }).then(response =>{
             expect(response.status).to.eq(204)
@@ -44,7 +45,7 @@ describe('tasks', ()=>{
         cy.request({
             url:'http://localhost:3333/tasks',
             method:'POST',
-            body: {name:'Estudar javascript', is_done: false}
+            body: task
         }).then(response =>{
             expect(response.status).to.eq(201)
         })
@@ -53,7 +54,7 @@ describe('tasks', ()=>{
         cy.visit('http://localhost:8080')
 
         cy.get('input[placeholder="Add a new Task"]')
-            .type('Estudar javascript')
+            .type(task.name)
 
         cy.contains('button', 'Create').click()//button[contains(text(),'Create')]
 
