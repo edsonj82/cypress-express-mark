@@ -35,16 +35,23 @@ describe('tasks', () => {
     })
     context('update', () => {
         it('should complete a task', () => {
-            const taskName = 'Ler um livro de nodejs'
+            const task = {
+                name: 'Ler um livro de nodejs',
+                is_done: false
+            }
+
+            cy.removeTaskByName(task.name)
+            cy.postTask(task)
 
             cy.visit('http://localhost:8080')
             //(//p[contains(text(),"Ler um livro de nodejs")]/..//button)[1]
-            cy.contains('p', taskName)
+            cy.contains('p', task.name)
                 .parent()
                 .find('button[class*=ItemToggle]')//button[class*=ItemToggle]
                 .click()
 
-            cy.contains('p', taskName).should('have.css','text-decoration-line', 'line-through')//validar marcado
+            cy.contains('p', task.name)
+                .should('have.css', 'text-decoration-line', 'line-through')//validar marcado
         })
     })
 })
