@@ -33,4 +33,18 @@ describe('tasks', () => {
             cy.isRequired('This is a required field')
         })
     })
+    context('update', () => {
+        it('should complete a task', () => {
+            const taskName = 'Ler um livro de nodejs'
+
+            cy.visit('http://localhost:8080')
+            //(//p[contains(text(),"Ler um livro de nodejs")]/..//button)[1]
+            cy.contains('p', taskName)
+                .parent()
+                .find('button[class*=ItemToggle]')//button[class*=ItemToggle]
+                .click()
+
+            cy.contains('p', taskName).should('have.css','text-decoration-line', 'line-through')//validar marcado
+        })
+    })
 })
