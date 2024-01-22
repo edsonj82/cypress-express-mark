@@ -29,11 +29,6 @@ describe('tasks', () => {
 
     it('required field', ()=>{
         cy.createTask()
-        cy.get('input[placeholder="Add a new Task"]')
-            .invoke('prop','validationMessage')
-            .should((text)=>{
-                expect('This is a required field'
-                ).to.eq(text)
-            })
+cy.isRequired('This is a required field')
     })
 })
