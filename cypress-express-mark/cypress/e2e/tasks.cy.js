@@ -6,8 +6,8 @@ describe('tasks', () => {
     before(()=>{
         cy.fixture('tasks').then(t => {
             testData = t;
-        })
-    })
+        })        
+    })    
 
     context('register', () => {
         //it.only
