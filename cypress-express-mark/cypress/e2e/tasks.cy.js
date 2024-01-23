@@ -1,7 +1,16 @@
 /// <reference types="cypress" />
 
 describe('tasks', () => {
+
+    let testData;
+    before(()=>{
+        cy.fixture('tasks').then(t => {
+            testData = t;
+        })
+    })
+
     context('register', () => {
+        //it.only
         it('should register a new task', () => {
             const taskName = 'Ler um livro de nodejs'
 
@@ -12,10 +21,7 @@ describe('tasks', () => {
         })
 
         it('should not allow duplated task', () => {
-            const task = {
-                name: 'Estudar javascript',
-                is_done: false
-            }
+            const task = testData.dup
 
             cy.removeTaskByName(task.name)
             //Dado que eu tenho uma tarefa duplicada
